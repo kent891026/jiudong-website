@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>酒董｜懂酒 - Gallery + Preview</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+TC:wght@300;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- 主樣式 -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Nav -->
+    <nav>
+        <div class="logo">酒董｜<span>懂酒</span></div>
+        <div class="nav-right">
+            <div>
+                <a href="#" class="social-btn"><span class="social-icon"></span> IG</a>
+                <a href="#" class="social-btn"><span class="social-icon"></span> FB</a>
+                <a href="#" class="social-btn"><span class="social-icon"></span> LINE</a>
+            </div>
+
+            <button class="lang-toggle" onclick="toggleLanguage()">
+                <span id="l-en">EN</span> / <span id="l-zh" class="active">中</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <div class="modal-left">
+                <img src="" id="m-img" class="modal-img" alt="Product" />
+            </div>
+
+            <div class="modal-right">
+                <span class="modal-close" onclick="closeModal()">×</span>
+                <div id="m-tag" class="modal-tag lang-text" style="display:none;"></div>
+                <h4 id="m-cat" class="modal-cat lang-text">CATEGORY</h4>
+                <h2 id="m-title" class="modal-title lang-text">Title</h2>
+                <p id="m-desc" class="modal-desc lang-text">Desc</p>
+                <p id="m-extra" class="modal-extra lang-text" style="display:none;"></p>
+                <div class="modal-actions">
+                    <button id="m-primary" class="modal-primary lang-text">聯絡酒董 Contact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="hero">
+        <img src="assets/img/champagne.png" class="hero-bottle" alt="Hero Bottle" />
+        <h1 class="hero-title lang-text" data-zh="金色微醺" data-en="GOLDEN VIBES">金色微醺</h1>
+        <p class="lang-text" data-zh="探索世界邊境的風味" data-en="Discover flavors from the edge." style="color:#888;">
+            探索世界邊境的風味
+        </p>
+    </section>
+
+    <!-- 第一區：嚴選酒單 SELECTION（Gallery 卡片 + 條列文字） -->
+    <section id="products">
+        <div class="section-head">
+            <h2>嚴選酒單 SELECTION</h2>
+            <p>Click to Explore</p>
+        </div>
+
+        <div class="grid-gallery">
+            <!-- Champagne -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/champagne.png"
+                 data-category-key="champagne"
+                 data-title-zh="酩悅冰香檳"
+                 data-title-en="Moët Ice Impérial"
+                 data-category-zh="香檳 Champagne"
+                 data-category-en="Champagne"
+                 data-desc-zh="專為加冰飲用設計的香檳，打破傳統規則。"
+                 data-desc-en="Designed to be enjoyed over ice, breaking traditional rules."
+                 data-extra-zh="適合派對、戶外聚會，搭配水果與輕食更顯風味。"
+                 data-extra-en="Perfect for parties and outdoor gatherings, pairs well with fruits and light snacks."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/champagne.png" class="card-img" alt="Champagne" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Champagne</span>
+                    <div class="p-name lang-text" data-zh="酩悅冰香檳" data-en="Moët Ice Impérial">酩悅冰香檳</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：清爽柑橘、熱帶水果與細緻氣泡。"
+                            data-en="Profile: Citrus, tropical fruits, fine bubbles.">
+                            風味：清爽柑橘、熱帶水果與細緻氣泡。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：夏日派對、戶外聚會、泳池酒局。"
+                            data-en="Occasion: Summer parties, outdoor gatherings, poolside.">
+                            適合：夏日派對、戶外聚會、泳池酒局。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Plum Wine -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/plum.png"
+                 data-category-key="wine"
+                 data-title-zh="寶酒造 本格梅酒"
+                 data-title-en="Takara Plum Wine"
+                 data-category-zh="梅酒 Plum Wine"
+                 data-category-en="Plum Wine"
+                 data-desc-zh="使用完熟紀州南高梅，口感濃厚醇香。"
+                 data-desc-en="Crafted with fully ripened Kishu Nanko plums, rich and aromatic."
+                 data-extra-zh="冰鎮或加氣泡水飲用，能凸顯酸甜層次。"
+                 data-extra-en="Serve chilled or with soda to highlight its sweet-tart balance."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/plum.png" class="card-img" alt="Plum Wine" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Plum Wine</span>
+                    <div class="p-name lang-text" data-zh="寶酒造 本格梅酒" data-en="Takara Plum Wine">寶酒造 本格梅酒</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：濃郁梅香、酸甜平衡、收尾柔和。"
+                            data-en="Profile: Rich plum aroma, balanced sweet and sour, smooth finish.">
+                            風味：濃郁梅香、酸甜平衡、收尾柔和。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：日式料理、宵夜、小酌放鬆時刻。"
+                            data-en="Occasion: With Japanese food, late-night snacks, casual sipping.">
+                            適合：日式料理、宵夜、小酌放鬆時刻。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Vodka -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/vodka.png"
+                 data-category-key="spirits"
+                 data-title-zh="思美洛伏特加"
+                 data-title-en="Smirnoff No.21"
+                 data-category-zh="伏特加 Vodka"
+                 data-category-en="Vodka"
+                 data-desc-zh="經過三次蒸餾與十次過濾，純淨無雜質。"
+                 data-desc-en="Triple distilled and ten times filtered for exceptional purity."
+                 data-extra-zh="適合作為各式調酒基底，乾淨俐落不搶戲。"
+                 data-extra-en="Ideal as a cocktail base, clean and neutral on the palate."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/vodka.png" class="card-img" alt="Vodka" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Vodka</span>
+                    <div class="p-name lang-text" data-zh="思美洛伏特加" data-en="Smirnoff No.21">思美洛伏特加</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：極為純淨、中性、收尾俐落。"
+                            data-en="Profile: Very clean, neutral, sharp finish.">
+                            風味：極為純淨、中性、收尾俐落。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：各式調酒基底、Shot、派對聚會。"
+                            data-en="Occasion: Cocktail base, shots, party gatherings.">
+                            適合：各式調酒基底、Shot、派對聚會。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Tequila -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/tequila.png"
+                 data-category-key="spirits"
+                 data-title-zh="金快活龍舌蘭"
+                 data-title-en="Jose Cuervo Especial"
+                 data-category-zh="龍舌蘭 Tequila"
+                 data-category-en="Tequila"
+                 data-desc-zh="經典金龍舌蘭，調製瑪格麗特的靈魂。"
+                 data-desc-en="Classic golden tequila, the soul of a good margarita."
+                 data-extra-zh="可純飲、加鹽檸檬，或入經典調酒。"
+                 data-extra-en="Enjoy neat with salt and lime or in classic cocktails."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/tequila.png" class="card-img" alt="Tequila" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Tequila</span>
+                    <div class="p-name lang-text" data-zh="金快活龍舌蘭" data-en="Jose Cuervo Especial">金快活龍舌蘭</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：龍舌蘭香氣明顯，帶有橡木與香草調性。"
+                            data-en="Profile: Agave-forward with oak and vanilla notes.">
+                            風味：龍舌蘭香氣明顯，帶有橡木與香草調性。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：瑪格麗特、Tequila Shot、熱鬧酒局。"
+                            data-en="Occasion: Margaritas, tequila shots, lively nights.">
+                            適合：瑪格麗特、Tequila Shot、熱鬧酒局。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Whiskey -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/whisky.png"
+                 data-category-key="whisky"
+                 data-title-zh="傑克丹尼田納西"
+                 data-title-en="Jack Daniel's No.7"
+                 data-category-zh="田納西威士忌"
+                 data-category-en="Tennessee Whiskey"
+                 data-desc-zh="糖楓木炭過濾，田納西經典風味。"
+                 data-desc-en="Charcoal mellowed for a smooth Tennessee classic."
+                 data-extra-zh="可純飲、加冰，或搭配可樂成為經典 Highball。"
+                 data-extra-en="Serve neat, on the rocks, or with cola for a classic highball."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/whisky.png" class="card-img" alt="Whisky" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Whiskey</span>
+                    <div class="p-name lang-text" data-zh="傑克丹尼田納西" data-en="Jack Daniel's No.7">傑克丹尼田納西</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：焦糖、香草與淡淡煙燻木質調。"
+                            data-en="Profile: Caramel, vanilla, with a hint of smoke.">
+                            風味：焦糖、香草與淡淡煙燻木質調。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：純飲、Highball、搭配美式料理。"
+                            data-en="Occasion: Neat, highball, with American comfort food.">
+                            適合：純飲、Highball、搭配美式料理。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Red Wine -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/red_wine.png"
+                 data-category-key="wine"
+                 data-title-zh="哈特拉斯甜紅酒"
+                 data-title-en="Hatteras Red"
+                 data-category-zh="甜紅酒 Sweet Red Wine"
+                 data-category-en="Sweet Red Wine"
+                 data-desc-zh="美國南方甜紅酒，果香奔放。"
+                 data-desc-en="A Southern sweet red bursting with fruit flavors."
+                 data-extra-zh="適合作為餐後甜酒或搭配水果甜點。"
+                 data-extra-en="Great as a dessert wine or paired with fruit desserts."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/red_wine.png" class="card-img" alt="Red Wine" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Red Wine</span>
+                    <div class="p-name lang-text" data-zh="哈特拉斯甜紅酒" data-en="Hatteras Red">哈特拉斯甜紅酒</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：成熟葡萄、莓果香甜，口感圓潤。"
+                            data-en="Profile: Ripe grape and berry sweetness, round palate.">
+                            風味：成熟葡萄、莓果香甜，口感圓潤。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：甜點、起司盤、輕鬆聚會小酌。"
+                            data-en="Occasion: Desserts, cheese platters, relaxed gatherings.">
+                            適合：甜點、起司盤、輕鬆聚會小酌。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Gin -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/gin.png"
+                 data-category-key="spirits"
+                 data-title-zh="亨利爵士琴酒"
+                 data-title-en="Hendrick's Gin"
+                 data-category-zh="琴酒 Gin"
+                 data-category-en="Gin"
+                 data-desc-zh="添加小黃瓜與玫瑰花瓣精華，優雅奇特。"
+                 data-desc-en="Infused with cucumber and rose petals for a unique elegance."
+                 data-extra-zh="適合搭配湯力水，或以黃瓜片作點綴。"
+                 data-extra-en="Best enjoyed with tonic water and cucumber slice."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/gin.png" class="card-img" alt="Gin" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Gin</span>
+                    <div class="p-name lang-text" data-zh="亨利爵士琴酒" data-en="Hendrick's Gin">亨利爵士琴酒</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：杜松子為主調，疊加玫瑰與小黃瓜清香。"
+                            data-en="Profile: Juniper-forward with rose and cucumber freshness.">
+                            風味：杜松子為主調，疊加玫瑰與小黃瓜清香。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：Gin &amp; Tonic、創意花草系調酒。"
+                            data-en="Occasion: Gin &amp; tonic, floral and botanical cocktails.">
+                            適合：Gin &amp; Tonic、創意花草系調酒。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+
+            <!-- Beer -->
+            <div class="card-gallery product-card"
+                 data-img="assets/img/beer.png"
+                 data-category-key="beer"
+                 data-title-zh="朝日辛口啤酒"
+                 data-title-en="Asahi Super Dry"
+                 data-category-zh="辛口啤酒 Premium Beer"
+                 data-category-en="Premium Beer"
+                 data-desc-zh="極致爽口，辛口啤酒的代名詞。"
+                 data-desc-en="Crisp, refreshing, the benchmark of dry beer."
+                 data-extra-zh="冰鎮後搭配燒烤、炸物，清爽解膩。"
+                 data-extra-en="Serve well-chilled with grilled or fried foods to cut through richness."
+                 data-primary-zh="聯絡酒董 Contact"
+                 data-primary-en="Contact Sommelier">
+                <div class="img-block">
+                    <img src="assets/img/beer.png" class="card-img" alt="Beer" />
+                </div>
+                <div class="text-box">
+                    <span class="p-cat">Beer</span>
+                    <div class="p-name lang-text" data-zh="朝日辛口啤酒" data-en="Asahi Super Dry">朝日辛口啤酒</div>
+                    <ul class="p-list">
+                        <li class="lang-text"
+                            data-zh="風味：收尾乾爽俐落，苦味輕盈。"
+                            data-en="Profile: Crisp, dry finish with light bitterness.">
+                            風味：收尾乾爽俐落，苦味輕盈。
+                        </li>
+                        <li class="lang-text"
+                            data-zh="適合：燒肉、炸物、居酒屋下酒搭配。"
+                            data-en="Occasion: Yakiniku, fried dishes, izakaya pairing.">
+                            適合：燒肉、炸物、居酒屋下酒搭配。
+                        </li>
+                    </ul>
+                    <div class="view-btn">查看詳情</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第二區：探索珍稀風味 Title -->
+    <div class="hero-small">
+        <div>
+            <h1 class="luxury-title lang-text"
+                data-zh="探索珍稀風味"
+                data-en="Explore Rare Flavors"
+                style="font-size:3rem;">探索珍稀風味</h1>
+            <p class="lang-text"
+               data-zh="全球精選，專屬你的在地風味。"
+               data-en="Global Selection, Local Delivery."
+               style="color:#888; margin-top:10px;">
+               全球精選，專屬你的在地風味。
+            </p>
+        </div>
+    </div>
+
+    <!-- 第二區：Showcase 實圖預覽 + Filter + 按鈕 -->
+    <section id="showcase">
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">全部 ALL</button>
+            <button class="filter-btn" data-filter="whisky">威士忌 WHISKY</button>
+            <button class="filter-btn" data-filter="wine">葡萄酒 WINE</button>
+            <button class="filter-btn" data-filter="spirits">烈酒 SPIRITS</button>
+            <button class="filter-btn" data-filter="beer">啤酒 BEER</button>
+        </div>
+
+        <div class="grid-showcase">
+            <!-- Jack Daniel's -->
+            <div class="card-showcase product-card"
+                 data-filter-category="whisky"
+                 data-img="assets/img/whisky.png"
+                 data-tag-zh="熱銷 HOT SALE"
+                 data-tag-en="HOT SALE"
+                 data-title-zh="傑克丹尼田納西"
+                 data-title-en="Jack Daniel's No.7"
+                 data-category-zh="田納西威士忌"
+                 data-category-en="Tennessee Whiskey"
+                 data-desc-zh="糖楓木炭過濾，帶出柔順而帶有煙燻甜感的經典風味。"
+                 data-desc-en="Charcoal mellowed for a smooth, slightly smoky sweetness."
+                 data-extra-zh="無論純飲、加冰或調酒，都是入門經典的首選。"
+                 data-extra-en="A staple for beginners and enthusiasts alike, neat or in cocktails."
+                 data-primary-zh="私訊詢價"
+                 data-primary-en="Contact for Price">
+                <div class="tag">HOT SALE</div>
+                <div class="img-container">
+                    <img src="assets/img/whisky.png" class="product-img" alt="Whisky" />
+                </div>
+                <div class="info">
+                    <span class="category">Tennessee Whiskey</span>
+                    <h3 class="title">Jack Daniel's No.7</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">詳細介紹</button>
+                        <button class="action-btn btn-primary">私訊詢價</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hatteras Red -->
+            <div class="card-showcase product-card"
+                 data-filter-category="wine"
+                 data-img="assets/img/red_wine.png"
+                 data-tag-zh="本月選品"
+                 data-tag-en="Pick of the Month"
+                 data-title-zh="哈特拉斯甜紅酒"
+                 data-title-en="Duplin Hatteras Red"
+                 data-category-zh="甜紅酒"
+                 data-category-en="Sweet Red Wine"
+                 data-desc-zh="帶有濃郁葡萄與莓果香氣，入口柔和甜潤。"
+                 data-desc-en="Rich grape and berry aromas with a soft, sweet palate."
+                 data-extra-zh="適合冰鎮後單飲，或搭配起司、巧克力甜點。"
+                 data-extra-en="Serve chilled on its own or with cheese and chocolate desserts."
+                 data-primary-zh="加入清單"
+                 data-primary-en="Add to List">
+                <div class="tag">本月選品</div>
+                <div class="img-container">
+                    <img src="assets/img/red_wine.png" class="product-img" alt="Red Wine" />
+                </div>
+                <div class="info">
+                    <span class="category">Sweet Red Wine</span>
+                    <h3 class="title">Duplin Hatteras Red</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">產地故事</button>
+                        <button class="action-btn btn-primary">加入清單</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hendrick's Gin -->
+            <div class="card-showcase product-card"
+                 data-filter-category="spirits"
+                 data-img="assets/img/gin.png"
+                 data-tag-zh="極稀有"
+                 data-tag-en="RARE"
+                 data-title-zh="亨利爵士琴酒"
+                 data-title-en="Hendrick's Gin"
+                 data-category-zh="蘇格蘭琴酒"
+                 data-category-en="Scottish Gin"
+                 data-desc-zh="玫瑰花瓣與小黃瓜的獨特香氣，打造優雅又怪誕的風味。"
+                 data-desc-en="Rose and cucumber notes create an elegant yet quirky profile."
+                 data-extra-zh="推薦搭配湯力水與一片黃瓜，凸顯清爽層次。"
+                 data-extra-en="Best with tonic and a cucumber slice to highlight its freshness."
+                 data-primary-zh="私訊詢價"
+                 data-primary-en="Contact for Price">
+                <div class="tag">極稀有</div>
+                <div class="img-container">
+                    <img src="assets/img/gin.png" class="product-img" alt="Gin" />
+                </div>
+                <div class="info">
+                    <span class="category">Scottish Gin</span>
+                    <h3 class="title">Hendrick's Gin</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">風味解析</button>
+                        <button class="action-btn btn-primary">私訊詢價</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asahi Super Dry -->
+            <div class="card-showcase product-card"
+                 data-filter-category="beer"
+                 data-img="assets/img/beer.png"
+                 data-tag-zh="新品上市"
+                 data-tag-en="NEW"
+                 data-title-zh="朝日辛口啤酒"
+                 data-title-en="Asahi Super Dry"
+                 data-category-zh="辛口啤酒"
+                 data-category-en="Premium Beer"
+                 data-desc-zh="乾淨俐落的收尾，適合搭配各式料理。"
+                 data-desc-en="Crisp finish that pairs well with a wide range of dishes."
+                 data-extra-zh="燒肉、炸雞、串燒的好搭檔，清爽不膩口。"
+                 data-extra-en="Perfect companion to yakiniku, fried chicken, and skewers."
+                 data-primary-zh="箱購優惠"
+                 data-primary-en="Bulk Offer">
+                <div class="tag">新品上市</div>
+                <div class="img-container">
+                    <img src="assets/img/beer.png" class="product-img" alt="Beer" />
+                </div>
+                <div class="info">
+                    <span class="category">Premium Beer</span>
+                    <h3 class="title">Asahi Super Dry</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">查看詳情</button>
+                        <button class="action-btn btn-primary">箱購優惠</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gentleman Jack -->
+            <div class="card-showcase product-card"
+                 data-filter-category="whisky"
+                 data-img="assets/img/whisky.png"
+                 data-tag-zh="限定版"
+                 data-tag-en="LIMITED"
+                 data-title-zh="紳士傑克威士忌"
+                 data-title-en="Gentleman Jack"
+                 data-category-zh="單桶威士忌"
+                 data-category-en="Single Barrel"
+                 data-desc-zh="雙重過濾工藝帶來更細緻柔順的口感。"
+                 data-desc-en="Double mellowed for an even smoother, refined character."
+                 data-extra-zh="適合純飲慢慢品味，展現紳士般的優雅層次。"
+                 data-extra-en="Best enjoyed neat to appreciate its refined layers."
+                 data-primary-zh="私訊詢價"
+                 data-primary-en="Contact for Price">
+                <div class="tag">限定版</div>
+                <div class="img-container">
+                    <img src="assets/img/whisky.png" class="product-img" alt="Whisky" />
+                </div>
+                <div class="info">
+                    <span class="category">Single Barrel</span>
+                    <h3 class="title">Gentleman Jack</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">詳細介紹</button>
+                        <button class="action-btn btn-primary">私訊詢價</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orbium Gin -->
+            <div class="card-showcase product-card"
+                 data-filter-category="spirits"
+                 data-img="assets/img/gin.png"
+                 data-title-zh="Orbium 特別版琴酒"
+                 data-title-en="Orbium Limited"
+                 data-category-zh="精釀琴酒"
+                 data-category-en="Craft Gin"
+                 data-desc-zh="在原有配方中加入艾草與龍膽，帶出苦甜交織的全新層次。"
+                 data-desc-en="Adds wormwood and gentian for a complex bitter-sweet twist."
+                 data-extra-zh="適合進階玩家體驗獨特風味，調配 Negroni 更顯個性。"
+                 data-extra-en="Great for advanced palates and distinctive Negroni twists."
+                 data-primary-zh="加入清單"
+                 data-primary-en="Add to List">
+                <div class="img-container">
+                    <img src="assets/img/gin.png" class="product-img" alt="Gin" />
+                </div>
+                <div class="info">
+                    <span class="category">Craft Gin</span>
+                    <h3 class="title">Orbium Limited</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">風味解析</button>
+                        <button class="action-btn btn-primary">加入清單</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carolina Red Reserve -->
+            <div class="card-showcase product-card"
+                 data-filter-category="wine"
+                 data-img="assets/img/red_wine.png"
+                 data-title-zh="卡羅萊納紅酒珍藏"
+                 data-title-en="Carolina Red Reserve"
+                 data-category-zh="乾紅酒"
+                 data-category-en="Dry Red Wine"
+                 data-desc-zh="單寧與酸度平衡，帶有深色莓果與香料氣息。"
+                 data-desc-en="Balanced tannins and acidity with dark berry and spice notes."
+                 data-extra-zh="搭配紅肉、義大利麵或起司盤皆相當適合。"
+                 data-extra-en="Pairs well with red meats, pasta, or a cheese board."
+                 data-primary-zh="私訊詢價"
+                 data-primary-en="Contact for Price">
+                <div class="img-container">
+                    <img src="assets/img/red_wine.png" class="product-img" alt="Red Wine" />
+                </div>
+                <div class="info">
+                    <span class="category">Dry Red Wine</span>
+                    <h3 class="title">Carolina Red Reserve</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">產地故事</button>
+                        <button class="action-btn btn-primary">私訊詢價</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asahi Dry Black -->
+            <div class="card-showcase product-card"
+                 data-filter-category="beer"
+                 data-img="assets/img/beer.png"
+                 data-tag-zh="季節限定"
+                 data-tag-en="SEASONAL"
+                 data-title-zh="朝日黑啤酒"
+                 data-title-en="Asahi Dry Black"
+                 data-category-zh="黑拉格"
+                 data-category-en="Black Lager"
+                 data-desc-zh="帶有烘焙麥芽香與細緻泡沫，卻依然保持爽口收尾。"
+                 data-desc-en="Roasted malt aromas with fine foam yet a surprisingly crisp finish."
+                 data-extra-zh="適合搭配燉肉、燻製料理，增添厚實風味。"
+                 data-extra-en="Excellent with stews and smoked dishes, adding depth of flavor."
+                 data-primary-zh="箱購優惠"
+                 data-primary-en="Bulk Offer">
+                <div class="tag">季節限定</div>
+                <div class="img-container">
+                    <img src="assets/img/beer.png" class="product-img" alt="Beer" />
+                </div>
+                <div class="info">
+                    <span class="category">Black Lager</span>
+                    <h3 class="title">Asahi Dry Black</h3>
+                    <div class="btn-group">
+                        <button class="action-btn">查看詳情</button>
+                        <button class="action-btn btn-primary">箱購優惠</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="load-more">
+            <button class="big-btn">載入更多酒款 View More</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">關於酒董</a>
+            <a href="#">聯絡我們</a>
+            <a href="#">訂閱方案</a>
+        </div>
+        <p class="lang-text"
+           data-zh="禁止酒駕，未滿十八歲禁止飲酒"
+           data-en="Don't drink and drive. Drinking is prohibited for those under 18.">
+           禁止酒駕，未滿十八歲禁止飲酒
+        </p>
+    </footer>
+
+    <!-- 主互動腳本 -->
+    <script src="script.js"></script>
+</body>
+</html>
